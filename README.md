@@ -1,4 +1,4 @@
-Views term hierarchy weight field
+Views term hierarchy
 =====
 
 This module provides views sort handler to sort terms in hierarchical order.
