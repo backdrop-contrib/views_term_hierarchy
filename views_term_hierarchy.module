@@ -1,8 +1,21 @@
 <?php
 
+
 /**
  * Implements hook_views_api().
  */
 function views_term_hierarchy_views_api() {
-  return array('api' => 3);
+  return array(
+    'api' => 3,
+    'path' => backdrop_get_path('module', 'views_term_hierarchy') . '/views',
+  );
+}
+
+/**
+ * Implements hook_autoload_info().
+ */
+function views_term_hierarchy_autoload_info() {
+  return array(
+    'views_term_hierarchy_sort' => 'views/views_term_hierarchy_sort.inc',
+  );
 }

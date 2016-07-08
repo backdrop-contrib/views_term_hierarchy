@@ -16,8 +16,8 @@ class views_term_hierarchy_sort extends views_handler_sort {
   function post_execute(&$values) {
     $vocabularies = array();
     foreach ($values as $value) {
-      if (isset($value->taxonomy_vocabulary_machine_name)) {
-        $vocabulary = $value->taxonomy_vocabulary_machine_name;
+      if (isset($value->taxonomy_term_data_vocabulary)) {
+        $vocabulary = $value->taxonomy_term_data_vocabulary;
         if (!isset($vocabularies[$vocabulary])) {
           $vocabularies[$vocabulary] = $vocabulary;
         }
@@ -31,9 +31,9 @@ class views_term_hierarchy_sort extends views_handler_sort {
 
     $this->term_weights = array();
 
-    $vocabularies_by_name = taxonomy_vocabulary_get_names();
+    $vocabularies_by_name = taxonomy_vocabulary_load_multiple(FALSE);
     foreach ($vocabularies as $vocabulary) {
-      $term_trees[$vocabulary] = taxonomy_get_tree($vocabularies_by_name[$vocabulary]->vid);
+      $term_trees[$vocabulary] = taxonomy_get_tree($vocabularies_by_name[$vocabulary]->machine_name);
       foreach ($term_trees[$vocabulary] as $weight => $term) {
         $this->term_weights[$term->tid] = $weight;
       }
