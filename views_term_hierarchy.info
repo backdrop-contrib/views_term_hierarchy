@@ -4,3 +4,4 @@ backdrop = 1.x
 package = Views
 dependencies[] = views
 files[]= views/views_term_hierarchy_sort.inc
+type = module
